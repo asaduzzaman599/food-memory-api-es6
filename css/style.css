@@ -1,0 +1,30 @@
+
+
+/* common */
+
+nav a{
+    color:white;   
+}/* 
+.header{
+    height: 100vh;
+    background-image: url(../images/banner/banner-3.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+} */
+
+/* banner  */
+
+.carousel-item img{
+    height: 500px;
+}
+
+
+.spinner-content{
+    z-index: 10;
+    height: 100vh;
+}
+.spinner{
+    z-index: 11;
+}
