@@ -1,6 +1,7 @@
 const foodContainer = document.getElementById('food-container');
 const spinner = document.getElementById('spinner');
 spinner.style.display ='none';
+const errorMessage = document.getElementById('error-message');
 
 const loadData =async () =>{
     
@@ -21,6 +22,7 @@ spinner.style.display ='block';
 
 const loadFood = async (category) =>{
     
+    
 spinner.style.display ='block';
     foodContainer.textContent = "";
     const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${category}`;
@@ -39,7 +41,10 @@ spinner.style.display ='block';
 
 const displayFoods = (foods) =>{
     
+    errorMessage.classList.add('d-none')
+    
     foods.forEach(food => {
+        
         console.log(food)
         const div = document.createElement('div');
         div.classList.add('col');
@@ -61,6 +66,8 @@ spinner.style.display ='none';
 }
 
 const displayCatagory = (categories) =>{
+    document.getElementById('title').innerText="Categories"
+    errorMessage.classList.add('d-none');
     categories.forEach(category => {
         console.log(category)
         const div = document.createElement('div');
@@ -80,5 +87,15 @@ const displayCatagory = (categories) =>{
     });
     
 spinner.style.display ='none';
+}
+
+const searchFood = () => {
+    const inputField = document.getElementById('search-input');
+    const inputValue = inputField.value;
+    if(inputValue != ""){
+        loadFood(inputValue);
+    }else{
+        errorMessage.classList.remove('d-none')
+    }
 }
 loadData();
