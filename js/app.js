@@ -41,7 +41,8 @@ spinner.style.display ='block';
 
 const displayFoods = (foods) =>{
     
-    errorMessage.classList.add('d-none')
+    
+spinner.style.display ='none';
     
     foods.forEach(food => {
         
