@@ -1,3 +1,11 @@
+
+const inputField = document.getElementById('search-input');
+const inputButton = document.getElementById('search-btn');
+inputField.addEventListener('keyup',(e)=>{
+    if(e.key == "Enter"){
+        inputButton.click();
+    }
+})
 const foodContainer = document.getElementById('food-container');
 const spinner = document.getElementById('spinner');
 spinner.style.display ='none';
@@ -30,6 +38,8 @@ spinner.style.display ='block';
     try{
         const res = await fetch(url);
         const data = await res.json();
+        
+    document.getElementById('title').innerText=`${category} Category`
 
         displayFoods(data.meals);
 
@@ -39,11 +49,14 @@ spinner.style.display ='block';
 
 }
 
+const loadFoodDetail =food=>{
+    console.log(food)
+    
+}
+
 const displayFoods = (foods) =>{
     
-    
 spinner.style.display ='none';
-    
     foods.forEach(food => {
         
         console.log(food)
@@ -51,7 +64,7 @@ spinner.style.display ='none';
         div.classList.add('col');
 
         div.innerHTML= `
-        <div onclick="loadFood('${food.strMeal}')" class="card">
+        <div onclick="loadFoodDetail('${food}')" class="card">
                     <img src="${food.strMealThumb}" class="card-img-top" alt="...">
                     <div class="card-body">
                       <h5 class="card-title">${food.strMeal}</h5>
@@ -63,8 +76,12 @@ spinner.style.display ='none';
         foodContainer.appendChild(div);
     });
     
-spinner.style.display ='none';
 }
+
+
+
+
+
 
 const displayCatagory = (categories) =>{
     document.getElementById('title').innerText="Categories"
@@ -91,7 +108,6 @@ spinner.style.display ='none';
 }
 
 const searchFood = () => {
-    const inputField = document.getElementById('search-input');
     const inputValue = inputField.value;
     if(inputValue != ""){
         loadFood(inputValue);
